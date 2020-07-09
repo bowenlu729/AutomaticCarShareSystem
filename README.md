@@ -1,5 +1,9 @@
 # PIOT-3
  Raspberry Pi application written in Python
+ 
+# Instruction 
+change database setting in config.py to local mysql dataset 
+run app.py in master file to run the website
 
 # Background
 This is the third assignment for Programming Internet of Things.   
