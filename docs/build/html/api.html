@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>api package &#8212; PIOT - Assignment 3 Version 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="api-package">
+<h1>api package<a class="headerlink" href="#api-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-api.controllers">
+<span id="api-controllers-module"></span><h2>api.controllers module<a class="headerlink" href="#module-api.controllers" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="api.controllers.createMember">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">createMember</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.createMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a member account by given details</p>
+<dl class="simple">
+<dt>params<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s password in plaintext.</p>
+</dd>
+<dt>firstName<span class="classifier">str</span></dt><dd><p>Member’s first name.</p>
+</dd>
+<dt>lastName<span class="classifier">str</span></dt><dd><p>Member’s last name.</p>
+</dd>
+<dt>email<span class="classifier">str</span></dt><dd><p>Member’s email address.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>int</dt><dd><p>Id of the member just created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.createReport">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">createReport</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.createReport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.createReservation">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">createReservation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.createReservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a reservation by given details.</p>
+<dl class="simple">
+<dt>params<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>memberId<span class="classifier">int</span></dt><dd><p>Id of member who is going to make the reservation.</p>
+</dd>
+<dt>carId<span class="classifier">int</span></dt><dd><p>Id of car that is going to be reserved.</p>
+</dd>
+<dt>reservedTime<span class="classifier">str</span></dt><dd><p>Time when the car can be unlocked.</p>
+</dd>
+<dt>reservedHours<span class="classifier">int</span></dt><dd><p>Hours that the car is reserved for.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>int</dt><dd><p>Id of the reservation just created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.getAllMembers">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">getAllMembers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.getAllMembers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch all members.</p>
+<dl class="simple">
+<dt>list of dict {</dt><dd><dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Member id.</p>
+</dd>
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s encrypted password.</p>
+</dd>
+<dt>firstName<span class="classifier">str</span></dt><dd><p>Member’s first name.</p>
+</dd>
+<dt>lastName<span class="classifier">str</span></dt><dd><p>Member’s last name.</p>
+</dd>
+<dt>email<span class="classifier">str</span></dt><dd><p>Member’s email address.</p>
+</dd>
+<dt>userType<span class="classifier">str</span></dt><dd><p>Member’s type.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>All the members .</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.getCars">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">getCars</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.getCars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch cars by given criteria.</p>
+<dl class="simple">
+<dt>params<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>id<span class="classifier">int (optional)</span></dt><dd><p>Car’s id.</p>
+</dd>
+<dt>make<span class="classifier">str (optional)</span></dt><dd><p>Car’s brand.</p>
+</dd>
+<dt>bodyType<span class="classifier">str (optional)</span></dt><dd><p>Car’s body type.</p>
+</dd>
+<dt>colour<span class="classifier">str (optional)</span></dt><dd><p>Car’s colour.</p>
+</dd>
+<dt>seats<span class="classifier">int (optional)</span></dt><dd><p>Number of seats.</p>
+</dd>
+<dt>location<span class="classifier">str (optional)</span></dt><dd><p>Car’s current location.</p>
+</dd>
+<dt>costPerHour<span class="classifier">float (optional)</span></dt><dd><p>Cost per hour.</p>
+</dd>
+<dt>available<span class="classifier">bool (optional)</span></dt><dd><p>Whether the car is available.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>list of dict {</dt><dd><dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Car’s id.</p>
+</dd>
+<dt>make<span class="classifier">str</span></dt><dd><p>Car’s brand.</p>
+</dd>
+<dt>bodyType<span class="classifier">str</span></dt><dd><p>Car’s body type.</p>
+</dd>
+<dt>colour<span class="classifier">str</span></dt><dd><p>Car’s colour.</p>
+</dd>
+<dt>seats<span class="classifier">int</span></dt><dd><p>Number of seats.</p>
+</dd>
+<dt>location<span class="classifier">str</span></dt><dd><p>Car’s current location.</p>
+</dd>
+<dt>latitude<span class="classifier">float</span></dt><dd><p>Car’s geographic coordinate that specifies the north-south position</p>
+</dd>
+<dt>longitude<span class="classifier">float</span></dt><dd><p>Car’s geographic coordinate that specifies the east–west position</p>
+</dd>
+<dt>costPerHour<span class="classifier">float</span></dt><dd><p>Cost per hour.</p>
+</dd>
+<dt>available<span class="classifier">bool</span></dt><dd><p>Whether the car is available.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>All the cars that mathc the criteria.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.getMembers">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">getMembers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.getMembers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch members by given criteria.</p>
+<dl class="simple">
+<dt>params<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>id<span class="classifier">int (optional)</span></dt><dd><p>Member id.</p>
+</dd>
+<dt>username<span class="classifier">str (optional)</span></dt><dd><p>Member’s username.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>list of dict {</dt><dd><dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Member id.</p>
+</dd>
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s encrypted password.</p>
+</dd>
+<dt>firstName<span class="classifier">str</span></dt><dd><p>Member’s first name.</p>
+</dd>
+<dt>lastName<span class="classifier">str</span></dt><dd><p>Member’s last name.</p>
+</dd>
+<dt>email<span class="classifier">str</span></dt><dd><p>Member’s email address.</p>
+</dd>
+<dt>userType<span class="classifier">str</span></dt><dd><p>Member’s type.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>All the members that match the criteria.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.getReservations">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">getReservations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.getReservations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch reservations by given criteria.</p>
+<dl class="simple">
+<dt>params<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>id<span class="classifier">int (optional)</span></dt><dd><p>Reservation id.</p>
+</dd>
+<dt>memberId<span class="classifier">int (optional)</span></dt><dd><p>Id of member who made the reservation.</p>
+</dd>
+<dt>carId<span class="classifier">int (optional)</span></dt><dd><p>Id of car that is reserved.</p>
+</dd>
+<dt>status<span class="classifier">int (optional)</span></dt><dd><p>Status of reservation (-1: canceled, 0: reserved, 1: in-use, 2: returned)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>list of dict {</dt><dd><dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Reservation id.</p>
+</dd>
+<dt>memberId<span class="classifier">int</span></dt><dd><p>Id of member who made the reservation.</p>
+</dd>
+<dt>carId<span class="classifier">int</span></dt><dd><p>Id of car that is reserved.</p>
+</dd>
+<dt>reservedTime<span class="classifier">str</span></dt><dd><p>Time when the car can be unlocked. (UTC time)</p>
+</dd>
+<dt>reservedHours<span class="classifier">int</span></dt><dd><p>Hours that the car is reserved for.</p>
+</dd>
+<dt>totalCost<span class="classifier">float</span></dt><dd><p>Total cost in the reservation.</p>
+</dd>
+<dt>status<span class="classifier">int</span></dt><dd><p>Status of reservation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>All the members that match the criteria.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.modify">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">modify</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.modify" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESTful endpoint to member.</p>
+<dl class="simple">
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s encrypted password.</p>
+</dd>
+<dt>firstName<span class="classifier">str</span></dt><dd><p>Member’s first name.</p>
+</dd>
+<dt>lastName<span class="classifier">str</span></dt><dd><p>Member’s last name.</p>
+</dd>
+<dt>email<span class="classifier">str</span></dt><dd><p>Member’s email address.</p>
+</dd>
+<dt>userType<span class="classifier">str</span></dt><dd><p>Member’s type.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>int</dt><dd><p>Id of the member just updated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.modifyUser">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">modifyUser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.modifyUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a member account by given details</p>
+<dl class="simple">
+<dt>params<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Member’s id.</p>
+</dd>
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s password in plaintext.</p>
+</dd>
+<dt>firstName<span class="classifier">str</span></dt><dd><p>Member’s first name.</p>
+</dd>
+<dt>lastName<span class="classifier">str</span></dt><dd><p>Member’s last name.</p>
+</dd>
+<dt>email<span class="classifier">str</span></dt><dd><p>Member’s email address.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>int</dt><dd><p>Id of the member just created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.reportCar">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">reportCar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.reportCar" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESTful endpoint to members data.</p>
+<dl class="simple">
+<dt>id<span class="classifier">str </span></dt><dd><p>Car’s email.</p>
+</dd>
+<dt>email<span class="classifier">str </span></dt><dd><p>Member’s email.</p>
+</dd>
+<dt>content<span class="classifier">str</span></dt><dd><p>Report’s content.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>int</dt><dd><p>Id of the car just updated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.routeAllMember">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">routeAllMember</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.routeAllMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESTful endpoint to access all members data.</p>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">list</span></dt><dd><p>A list of member dicts.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.routeCar">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">routeCar</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.routeCar" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESTful endpoint to access car data.</p>
+<dl class="simple">
+<dt>id<span class="classifier">int (optional)</span></dt><dd><p>Car’s id.</p>
+</dd>
+<dt>make<span class="classifier">str (optional)</span></dt><dd><p>Car’s brand.</p>
+</dd>
+<dt>bodyType<span class="classifier">str (optional)</span></dt><dd><p>Car’s body type.</p>
+</dd>
+<dt>colour<span class="classifier">str (optional)</span></dt><dd><p>Car’s colour.</p>
+</dd>
+<dt>seats<span class="classifier">int (optional)</span></dt><dd><p>Number of seats.</p>
+</dd>
+<dt>location<span class="classifier">str (optional)</span></dt><dd><p>Car’s current location.</p>
+</dd>
+<dt>costPerHour<span class="classifier">float (optional)</span></dt><dd><p>Cost per hour.</p>
+</dd>
+<dt>available<span class="classifier">bool (optional)</span></dt><dd><p>Whether the car is available.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">list</span></dt><dd><p>A list of car dicts.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.routeMember">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">routeMember</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.routeMember" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESTful endpoint to access member data.</p>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Member id.</p>
+</dd>
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">list</span></dt><dd><p>A list of member dicts.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s password.</p>
+</dd>
+<dt>firstName<span class="classifier">str</span></dt><dd><p>Member’s first name.</p>
+</dd>
+<dt>lastName<span class="classifier">str</span></dt><dd><p>Member’s last name.</p>
+</dd>
+<dt>email<span class="classifier">str</span></dt><dd><p>Member’s email.</p>
+</dd>
+<dt>userType<span class="classifier">str</span></dt><dd><p>Member’s type.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">dict</span></dt><dd><p>A member dict.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.routeReservation">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">routeReservation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.routeReservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESTful endpoint to access reservation data.</p>
+<dl class="simple">
+<dt>id<span class="classifier">int (optional)</span></dt><dd><p>Reservation id.</p>
+</dd>
+<dt>memberId<span class="classifier">int (optional)</span></dt><dd><p>Id of member who made the reservation.</p>
+</dd>
+<dt>carId<span class="classifier">int (optional)</span></dt><dd><p>Id of car that is reserved.</p>
+</dd>
+<dt>status<span class="classifier">int (optional)</span></dt><dd><p>Status of reservation (-1: canceled, 0: reserved, 1: in-use, 2: returned)</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">list</span></dt><dd><p>A list of reservation dicts.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>memberId<span class="classifier">int</span></dt><dd><p>Id of member who is going to make the reservation.</p>
+</dd>
+<dt>carId<span class="classifier">int</span></dt><dd><p>Id of car that is going to be reserved.</p>
+</dd>
+<dt>reservedTime<span class="classifier">str</span></dt><dd><p>Time when the car can be unlocked.</p>
+</dd>
+<dt>reservedHours<span class="classifier">int</span></dt><dd><p>Hours that the car is reserved for.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">dict</span></dt><dd><p>A reservation dict.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Reservation id.</p>
+</dd>
+<dt>location<span class="classifier">str (optional)</span></dt><dd><p>Car’s current location.</p>
+</dd>
+<dt>latitude<span class="classifier">float (optional)</span></dt><dd><p>Car’s current geographic coordinate.</p>
+</dd>
+<dt>longitude<span class="classifier">float (optional)</span></dt><dd><p>Car’s current geographic coordinate.</p>
+</dd>
+<dt>status<span class="classifier">int</span></dt><dd><p>Car’s current status.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">dict</span></dt><dd><p>A reservation dict.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.routeSearchMembers">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">routeSearchMembers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.routeSearchMembers" title="Permalink to this definition">¶</a></dt>
+<dd><p>RESTful endpoint to members data.</p>
+<dl class="simple">
+<dt>username<span class="classifier">str (optional)</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>email<span class="classifier">str (optional)</span></dt><dd><p>Member’s email.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">list</span></dt><dd><p>A list of member dicts.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.searchMembers">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">searchMembers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.searchMembers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch members by given criteria.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.controllers.updateReservation">
+<code class="sig-prename descclassname">api.controllers.</code><code class="sig-name descname">updateReservation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.controllers.updateReservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update a reservation by given details</p>
+<dl class="simple">
+<dt>params<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Reservation id.</p>
+</dd>
+<dt>location<span class="classifier">str (optional)</span></dt><dd><p>Car’s current location.</p>
+</dd>
+<dt>latitude<span class="classifier">float (optional)</span></dt><dd><p>Car’s current geographic coordinate.</p>
+</dd>
+<dt>longitude<span class="classifier">float (optional)</span></dt><dd><p>Car’s current geographic coordinate.</p>
+</dd>
+<dt>status<span class="classifier">int</span></dt><dd><p>Car’s current status.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>int</dt><dd><p>Id of the reservation just updated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PIOT - Assignment 3</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Bowen Lu, Tingyu Song, Qiaochu Wang.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Car Share System - History</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h1>[PIoT] Car Share System - History</h1>
+  <div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand">Hi, {{ member["firstName"] }} {{member["lastName"]}}</span>
+			<a class="btn btn-link text-light" href="/logout"><small>&gt;&gt; Logout</small></a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+        <span class="navbar-toggler-icon"></span>
+	    </button>
+  	</nav>
+	  <div class="collapse bg-dark" id="navbarToggleExternalContent">
+  	  <ul class="nav">
+    	  <li class="nav-item">
+      	  <a class="btn bg-secondary text-white" href="/cars">Cars</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/gmaps">Maps</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white disabled" href="/history">History</a>&nbsp;
+	      </li>
+	    </ul>
+  	</div>
+	</div>
+</div>
+
+<div class="container p-3 my-3">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Order No</th>
+        <th>Car No</th>
+        <th>Reserved Time</th>
+        <th>Reserved Hours</th>
+        <th>Total Cost</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reservation in reservations %}
+      <tr>
+        <td>{{ "R%06d" % reservation["id"] }}</td>
+        <td>{{ "C%04d" % reservation["car"]["id"] }}</td>
+        <td>{{ reservation["reservedTimeStr"] }}</td>
+        <td>{{ reservation["reservedHours"] }}</td>
+        <td>{{ "$%.2f" | format(reservation["totalCost"]) }}</td>
+        <td>{{ reservation["statusStr"] }}</td>
+        <td>
+          {% if reservation["status"] == 0 %}
+          <a type="button" class="btn btn-dark btn-sm" href="/cancel?id={{ reservation["id"] }}">Cancel</a>
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7">
+          <ul>
+            <li>Make: {{ reservation["car"]["make"] }}</li>
+            <li>Body Type: {{ reservation["car"]["bodyType"] }}</li>
+            <li>Colour: {{ reservation["car"]["colour"] }}</li>
+            <li>Seats: {{ reservation["car"]["seats"] }}</li>
+            <li>Location: {{ reservation["car"]["location"] }}</li>
+            <li>Cost/hr: {{ "$%.2f" | format(reservation["car"]["costPerHour"]) }}</li>
+          </ul>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <td>
+          {% if staff["userType"] == "admin" %}
+          <a type="button" class="btn btn-dark " href="/admin">Back</a>
+          {% endif %}
+        </td>
+</div>
+
+</body>
+</html>

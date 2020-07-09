@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Manager Page</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href= "{{ url_for('static', filename='admin.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- import chart JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="../static/utils.js"></script>
+
+  </head>
+
+  <body>
+    <div id="page-wraper">
+      <!-- Sidebar Menu -->
+      <div class="responsive-nav">
+        <div id="menu" class="menu">
+          <div class="container">
+
+            <div class="author-content">
+              <h4>{{ staff["username"] }}</h4>
+              <span>Manager</span>
+            </div>
+            <nav class="main-nav" role="navigation">
+              <ul class="main-menu">
+                <li><a href="#section1" onclick="showSection('section1')">Home Page</a></li>
+                <li><a href="#section2" onclick="showSection('section2')">Bar Chart</a></li>
+                <li><a href="#section3" onclick="showSection('section3')">Pie Chart</a></li>
+                <li><a href="#section4" onclick="showSection('section4')">Line Chart</a></li>
+              </ul>
+            </nav>
+
+          </div>
+        </div>
+      </div>
+
+      <section class="section about-me" id="section1" style="display:block">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Hi, {{staff["username"]}}</h2>
+            <div class="line-dec"></div>
+            <span
+              >This is the manager page which will allow manager to view 
+              three different types of visualisation graph that matters to decision making in dashboard page.
+            </span>
+          </div>
+
+            <div class="row">
+                <div class="right-text">
+                  <h4>The Dashboard</h4>
+                  <p></p>
+                  <p>
+                    Bar chart: Customer numbers for each different type of cars.
+                  </p>
+                  <p>
+                    Pie chart: Current variety of cars.
+                  </p>
+                  <p>
+                    Line chart: Renting number of the month.
+                  </p>
+                  <div class="white-button">
+                    <a href="/logout">Logout</a>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+      </section>
+
+      <section class="section about-me" id="section2" style="display:none">
+        <div class="container">
+
+          <div class="section-heading">
+              <h2>Bar Chart</h2>
+              <div class="line-dec"></div>
+              <span
+                >This bar chart demonstrates monthly turns over from January to July.
+              </span>
+          </div>
+
+          <div id="canvas-holder" style="width:100%" >
+          <canvas id="bar-area"></canvas>
+          
+        </div>
+      </section>
+
+      <section class="section about-me" id="section3" style="display:none">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Pie Chart</h2>
+          <div class="line-dec"></div>
+            <span
+            >These pie charts demonstrates two cars variety in store.
+            </span>
+          </div>
+
+          <div id="canvas-holder" style="width:100%" >
+            <p>Chart of car body type</p>
+            <canvas id="pie-area"></canvas>
+          </div> 
+
+          <div id="canvas-holder" style="width:100%" >
+            <p>Chart of car make</p>
+          <canvas id="pie2-area"></canvas>
+	    </div>   
+           
+        </div>
+      </section>
+
+      <section class="section about-me" id="section4" style="display:none">
+        <div class="container">
+
+          <div class="section-heading">
+              <h2>Line Chart</h2>
+            <div class="line-dec"></div>
+              <span
+              >This line chart demonstrates number of customers from Jan to July.
+              </span>
+          </div>
+
+          <div id="canvas-holder" style="width:100%" >
+          <canvas id="line-area"></canvas>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+
+    function showSection(id)
+    {
+        document.getElementById(id).style.display = "block";
+        hideSection(id)
+    }
+    
+    function hideSection(id)
+    {
+        var dic = ["section1", "section2", "section3","section4"];
+         for (var key in dic) {
+            if(dic[key] != id){
+              document.getElementById(dic[key]).style.display = "none";
+            }
+        }
+    }
+
+    var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		};
+    
+    /**********PIE CHART***********/
+    var bodyTypeFactor = function() {
+            var wagon = 0;
+            var suv = 0;
+            var van = 0;
+            var sedan = 0; 
+            var cars = {{ cars|tojson }};
+
+            for(j = 0,len=cars.length; j < len; j++) {
+                car = cars[j]
+                if(car.bodyType == "Wagon"){
+                    wagon +=1;
+                }else if(car.bodyType == "SUV"){
+                    suv += 1;
+                }else if(car.bodyType == "Van"){
+                    van += 1;
+                }else{
+                    sedan += 1;
+                }            
+            }
+
+            var data = [wagon,suv,van,sedan];
+            return data;
+		};
+    
+    var makeFactor = function() {
+            var holden = 0;
+            var kia = 0;
+            var mazada = 0;
+            var toyota = 0;
+            var honda = 0; 
+            var mitsubishi = 0;
+            var cars = {{ cars|tojson }};
+
+            for(j = 0,len=cars.length; j < len; j++) {
+                car = cars[j]
+                if(car.make == "Holden"){
+                    holden +=1;
+                }else if(car.make == "Kia"){
+                    kia += 1;
+                }else if(car.make == "Mazada"){
+                    mazada += 1;
+                }else if(car.make == "Toyota"){
+                    toyota += 1;
+                }else if(car.make == "Honda"){
+                    honda +=1 ;
+                }else{
+                    mitsubishi +=1;
+                }            
+            }
+
+            var data = [holden,kia,mazada,toyota,honda,mitsubishi];
+            return data;
+		};
+
+    var pieconfig = {
+        type: 'pie',
+        data: {
+            datasets: [{
+
+                data: bodyTypeFactor(),
+
+                backgroundColor: [
+                    window.chartColors.red,
+                    window.chartColors.orange,
+                    window.chartColors.yellow,
+                    window.chartColors.blue,
+                ],
+                label: 'Car Body Type',
+            }],
+            labels: [
+                'Wagon',
+                'SUV',
+                'Van',
+                'Sedan',
+            ]
+        },
+        options: {
+            responsive: true
+        }
+	};
+
+    var pieconfig2 = {
+        type: 'pie',
+        data: {
+            datasets: [{
+
+                data: makeFactor(),
+
+                backgroundColor: [
+                    window.chartColors.red,
+                    window.chartColors.orange,
+                    window.chartColors.yellow,
+                    window.chartColors.blue,
+                    window.chartColors.green,
+                    window.chartColors.pink,
+                ],
+                label: 'Car Make',
+            }],
+            labels: [
+                'Holden',
+                'Kia',
+                'Mazada',
+                'Toyota',
+                'Honda',
+                'Mitsubishi',
+            ]
+        },
+        options: {
+            responsive: true
+        }
+	};
+
+  /**********Bar CHART***********/
+  var barmonthFactor = function() {
+            var January = 0;
+            var February = 0;
+            var March = 0;
+            var April = 0;
+            var May = 0; 
+            var June = 0;
+            var July = 0;
+            var reservations = {{ reservations|tojson }};
+
+            for(j = 0,len=reservations.length; j < len; j++) {
+                var reserve = reservations[j]
+                var m = reserve.reservedTimeStr.split("-")[1]
+                var cost = reserve.totalCost
+
+                if( m == '01'){
+                    January += cost;
+                }else if( m == '02'){
+                    February += cost;
+                }else if( m == '03'){
+                    March += cost;
+                }else if( m == '04'){
+                    April += cost;
+                }else if( m == '05'){
+                    May += cost ;
+                }else if( m == '06'){
+                    June += cost ;
+                }else{
+                    July += cost;
+                }            
+            }
+
+            var data = [January,February,March,April,May,June,July];
+            return data;
+		};
+
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+	var barChartData = {
+			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+			datasets: [{
+				label: 'Monthly Turns Over',
+				backgroundColor: window.chartColors.red,
+				borderColor: window.chartColors.red,
+				borderWidth: 1,
+				data: barmonthFactor(),
+			}]
+
+		};
+
+
+  /**********Line CHART***********/
+  var linemonthFactor = function() {
+            var January = 0;
+            var February = 0;
+            var March = 0;
+            var April = 0;
+            var May = 0; 
+            var June = 0;
+            var July = 0;
+            var reservations = {{ reservations|tojson }};
+
+            for(j = 0,len=reservations.length; j < len; j++) {
+                var reserve = reservations[j]
+                var m = reserve.reservedTimeStr.split("-")[1]
+                var cost = reserve.totalCost
+
+                if( m == '01'){
+                    January += 1;
+                }else if( m == '02'){
+                    February += 1;
+                }else if( m == '03'){
+                    March += 1;
+                }else if( m == '04'){
+                    April += 1;
+                }else if( m == '05'){
+                    May += 1;
+                }else if( m == '06'){
+                    June += 1;
+                }else{
+                    July += 1;
+                }            
+            }
+
+            var data = [January,February,March,April,May,June,July];
+            return data;
+		};
+
+  var lineconfig = {
+			type: 'line',
+			data: {
+				labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+				datasets: [{
+					label: 'Monthly Customers Number',
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: linemonthFactor(),
+					fill: false,
+				}],
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Line Chart'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					x: {
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Month'
+						}
+					},
+					y: {
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						}
+					}
+				}
+			}
+		};
+  
+  window.onload = function() {
+      var ctx = document.getElementById('pie-area').getContext('2d');
+      window.myPie = new Chart(ctx, pieconfig);
+
+      var ctx2 = document.getElementById('pie2-area').getContext('2d');
+      window.myPie = new Chart(ctx2, pieconfig2);
+
+      var ctx3 = document.getElementById('bar-area').getContext('2d');
+			window.myBar = new Chart(ctx3, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: true,
+						text: 'Bar Chart'
+					}
+				}
+			});
+
+      var ctx4 = document.getElementById('line-area').getContext('2d');
+			window.myLine = new Chart(ctx4, lineconfig);
+  };
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>web module &#8212; Car Share System 0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-web">
+<span id="web-module"></span><h1>web module<a class="headerlink" href="#module-web" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="web.cancel">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">cancel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.cancel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reserve URI.</p>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Reservation id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.cars">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">cars</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.cars" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cars URI.</p>
+<p>None</p>
+<dl class="simple">
+<dt>make<span class="classifier">str (optional)</span></dt><dd><p>Car’s brand.</p>
+</dd>
+<dt>bodyType<span class="classifier">str (optional)</span></dt><dd><p>Car’s body type.</p>
+</dd>
+<dt>colour<span class="classifier">str (optional)</span></dt><dd><p>Car’s colour.</p>
+</dd>
+<dt>seats<span class="classifier">int (optional)</span></dt><dd><p>Number of seats.</p>
+</dd>
+<dt>location<span class="classifier">str (optional)</span></dt><dd><p>Car’s current location.</p>
+</dd>
+<dt>costPerHour<span class="classifier">float (optional)</span></dt><dd><p>Cost per hour.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.getCar">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">getCar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#web.getCar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a car by given id.</p>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Car id.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict</dt><dd><p>Car dict collected via RESTful API.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.gmaps">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">gmaps</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.gmaps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps URI.</p>
+<p>None</p>
+<dl class="simple">
+<dt>make<span class="classifier">str (optional)</span></dt><dd><p>Car’s brand.</p>
+</dd>
+<dt>bodyType<span class="classifier">str (optional)</span></dt><dd><p>Car’s body type.</p>
+</dd>
+<dt>colour<span class="classifier">str (optional)</span></dt><dd><p>Car’s colour.</p>
+</dd>
+<dt>seats<span class="classifier">int (optional)</span></dt><dd><p>Number of seats.</p>
+</dd>
+<dt>location<span class="classifier">str (optional)</span></dt><dd><p>Car’s current location.</p>
+</dd>
+<dt>costPerHour<span class="classifier">float (optional)</span></dt><dd><p>Cost per hour.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.history">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">history</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.history" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reserve URI.</p>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.logout">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logout URI.</p>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.register">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">register</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register URI.</p>
+<p>None</p>
+<dl class="simple">
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s password.</p>
+</dd>
+<dt>firstName<span class="classifier">str</span></dt><dd><p>Member’s first name.</p>
+</dd>
+<dt>lastName<span class="classifier">str</span></dt><dd><p>Member’s last name.</p>
+</dd>
+<dt>email<span class="classifier">str</span></dt><dd><p>Member’s email address.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.reserve">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">reserve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.reserve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reserve URI.</p>
+<dl class="simple">
+<dt>id<span class="classifier">int</span></dt><dd><p>Car id</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>carId<span class="classifier">int</span></dt><dd><p>Car id.</p>
+</dd>
+<dt>reservedTime<span class="classifier">str</span></dt><dd><p>Time when the car can be unlocked.</p>
+</dd>
+<dt>reservedHours<span class="classifier">int</span></dt><dd><p>Hours that the car is reserved for.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="web.welcome">
+<code class="sig-prename descclassname">web.</code><code class="sig-name descname">welcome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#web.welcome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Welcome URI.</p>
+<p>None</p>
+<dl class="simple">
+<dt>username<span class="classifier">str</span></dt><dd><p>Member’s username.</p>
+</dd>
+<dt>password<span class="classifier">str</span></dt><dd><p>Member’s password.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Car Share System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Jiecong Zhang, Tingyu Song, Sijie Shi, Jiahao Lu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/master/web.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

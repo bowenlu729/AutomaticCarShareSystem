@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Car Share System - Cars</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h1>[PIoT] Car Share System - Cars</h1>
+  <div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand">Hi, {{ member["firstName"] }} {{member["lastName"]}}</span>
+			<a class="btn btn-link text-light" href="/logout"><small>&gt;&gt; Logout</small></a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+        <span class="navbar-toggler-icon"></span>
+	    </button>
+  	</nav>
+	  <div class="collapse bg-dark" id="navbarToggleExternalContent">
+  	  <ul class="nav">
+    	  <li class="nav-item">
+      	  <a class="btn bg-secondary text-white disabled" href="/cars">Cars</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/gmaps">Maps</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/history">History</a>&nbsp;
+	      </li>
+	    </ul>
+  	</div>
+	</div>
+</div>
+
+<div class="container p-3 my-3">
+	<form class="form-inline" action="/cars" method="post">
+    <label for="make" class="mb-2 mr-sm-2">Make:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="make" name="make" placeholder="Any" value="{{ params['make'] }}">
+    <label for="bodyType" class="mb-2 mr-sm-2">Body Type:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="bodyType" name="bodyType" placeholder="Any" value="{{ params['bodyType'] }}">
+    <label for="colour" class="mb-2 mr-sm-2">Colour:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="colour" name="colour" placeholder="Any" value="{{ params['colour'] }}">
+    <label for="seats" class="mb-2 mr-sm-2">Seats:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="seats" name="seats" placeholder="Any" value="{% if params['seats'] is not none %}{{ params['seats'] }}{% endif %}">
+    <label for="location" class="mb-2 mr-sm-2">Location:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="location" name="location" placeholder="Any" value="{{ params['location'] }}">
+    <label for="costPerHour" class="mb-2 mr-sm-2">Cost/hr:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="costPerHour" name="costPerHour" placeholder="Any" value="{% if params['costPerHour'] is not none %}{{ params['costPerHour'] }}{% endif %}">
+    <button type="submit" class="btn btn-dark mb-2">Search</button>
+	</form>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Car No</th>
+        <th>Make</th>
+        <th>Body Type</th>
+        <th>Colour</th>
+        <th>Seats</th>
+        <th>Location</th>
+        <th>Cost/hr</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for car in cars %}
+      <tr>
+        <td>{{ "C%04d" % car["id"] }}</td>
+        <td>{{ car["make"] }}</td>
+        <td>{{ car["bodyType"] }}</td>
+        <td>{{ car["colour"] }}</td>
+        <td>{{ car["seats"] }}</td>
+        <td>{{ car["location"] }}</td>
+        <td>{{ "$%.2f" | format(car["costPerHour"]) }}</td>
+        <td>
+          {% if car["available"] %}
+          <a type="button" class="btn btn-dark btn-sm" href="/reserve?id={{ car['id'] }}">Reserve</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

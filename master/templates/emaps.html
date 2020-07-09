@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Engineer System - Maps</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h1>[PIoT] Engineer System - Maps</h1>
+  <div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand">Hi, {{ member["firstName"] }} {{member["lastName"]}}</span>
+			<a class="btn btn-link text-light" href="/logout"><small>&gt;&gt; Logout</small></a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+        <span class="navbar-toggler-icon"></span>
+	    </button>
+  	</nav>
+	  <div class="collapse bg-dark" id="navbarToggleExternalContent">
+  	  <ul class="nav">
+    	  <li class="nav-item">
+      	  <a class="btn bg-secondary text-white" href="/engineer">Cars</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white disabled" href="/emaps">Maps</a>&nbsp;
+	      </li>
+	    </ul>
+  	</div>
+	</div>
+</div>
+
+<div class="container p-3 my-3">
+  <div id="map" style="width:100%;height:500px;"></div>
+</div>
+
+<script>
+  function initGoogleMaps() {
+    var centre = {lat: {{ centre["latitude"] }}, lng: {{ centre["longitude"] }}};
+
+    var map = new google.maps.Map(document.getElementById('map'), { zoom: 13, center: centre });
+
+    {% for car in cars %}
+    placeCar(
+      map,
+      {lat: {{ car["latitude"] }}, lng: {{ car["longitude"] }}},
+      `<ul>
+        <li>Car No: <a href="/reserve?id={{ car['id'] }}">{{ "C%04d" % car["id"] }}</a></li>
+        <li>Make: {{ car["make"] }}</li>
+        <li>Body Type: {{ car["bodyType"] }}</li>
+        <li>Colour: {{ car["colour"] }}</li>
+        <li>Seats: {{ car["seats"] }}</li>
+        <li>Location: {{ car["location"] }}</li>
+        <li>Cost/hr: {{ "$%.2f" | format(car["costPerHour"]) }}</li>
+      </ul>`
+    );
+    {% endfor %}
+  }
+
+  function placeCar(map, position, desc) {
+    var marker = new google.maps.Marker({ position: position, map: map });
+    var infowindow = new google.maps.InfoWindow({ content: desc });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map, marker);
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCevXELrbZ2n4cIIWowgabsrUpHGcHbyjE&callback=initGoogleMaps"></script>
+</body>
+</html>

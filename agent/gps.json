@@ -1,0 +1,27 @@
+[
+    {
+        "location": "Glen Waverley",
+        "latitude": -37.883693,
+        "longitude": 145.167493
+    },
+    {
+        "location": "Mount Waverley",
+        "latitude": -37.880077,
+        "longitude": 145.131240
+    },
+    {
+        "location": "Notting Hill",
+        "latitude": -37.906559,
+        "longitude": 145.148111
+    },
+    {
+        "location": "Hughesdale",
+        "latitude": -37.903234,
+        "longitude": 145.083405
+    },
+    {
+        "location": "Malvern East",
+        "latitude": -37.883439,
+        "longitude": 145.083215
+    }
+]

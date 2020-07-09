@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Car Share System - Cancel</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h1>[PIoT] Car Share System - Cancel</h1>
+  <div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand">Hi, {{ member["firstName"] }} {{member["lastName"]}}</span>
+			<a class="btn btn-link text-light" href="/logout"><small>&gt;&gt; Logout</small></a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+        <span class="navbar-toggler-icon"></span>
+	    </button>
+  	</nav>
+	  <div class="collapse bg-dark" id="navbarToggleExternalContent">
+  	  <ul class="nav">
+    	  <li class="nav-item">
+      	  <a class="btn bg-secondary text-white" href="/cars">Cars</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/gmaps">Maps</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/history">History</a>&nbsp;
+	      </li>
+	    </ul>
+  	</div>
+	</div>
+</div>
+
+<div class="container p-3 my-3">
+  {% if error %}
+  <div class="alert alert-danger">
+    <strong>Error!</strong> Reservation cannot be canceled! Redirecting to <a href="{{ url_for('.history') }}">History</a> in 3 seconds...
+    <meta http-equiv="refresh" content="3;url={{ url_for('.history') }}">
+  </div>
+  {% else %}
+  <div class="alert alert-success">
+    <strong>Success!</strong> Reservation canceled! Redirecting to <a href="{{ url_for('.history') }}">History</a> in 3 seconds...
+  </div>
+  <meta http-equiv="refresh" content="3;url={{ url_for('.history') }}">
+  {% endif %}
+</div>
+
+</body>
+</html>

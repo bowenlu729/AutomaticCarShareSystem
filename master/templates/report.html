@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Car Share System - Cars</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h1>[PIoT] Admin System - Report Car</h1>
+</div>
+
+<div class="container p-3 my-3">
+{% if error is not none and error %}
+<div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error!</strong> Report car issue failed!
+</div>
+{% elif error is not none and not error %}
+<div class="alert alert-success">
+    <strong>Success!</strong> Your report sent to engineer! Redirecting to <a href="{{ url_for('.admin') }}">Admin page</a> in 3 seconds...
+</div>
+<meta http-equiv="refresh" content="3;url={{ url_for('.admin') }}">
+{% endif %}
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Car No</th>
+        <th>Make</th>
+        <th>Body Type</th>
+        <th>Colour</th>
+        <th>Seats</th>
+        <th>Location</th>
+        <th>Cost/hr</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ "C%04d" % car["id"] }}</td>
+        <td>{{ car["make"] }}</td>
+        <td>{{ car["bodyType"] }}</td>
+        <td>{{ car["colour"] }}</td>
+        <td>{{ car["seats"] }}</td>
+        <td>{{ car["location"] }}</td>
+        <td>{{ "$%.2f" | format(car["costPerHour"]) }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <form action="/report" method="post">
+    <input type="hidden" name="id" value="{{car['id']}}"> 
+    <div>
+    <label for="email" class="mb-2 mr-sm-2">Engineer Email:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="email" name="email" placeholder="For ex: engineer@gmail.com" >
+    </div>
+    <div>
+    <label for="content" class="mb-2 mr-sm-2">Content:</label>
+    <input type="text" class="form-control mb-2 mr-sm-2"  style="height:60px;" id="content" name="content" >
+    </div>
+    <div>
+    <button type="submit" class="btn btn-dark mb-2">Submit</button>
+    </div>
+  </form>
+  <p></p>
+  <button onclick="javascrtpt:window.location.href='/admin'" class="btn btn-dark mb-2">Back</button>
+</div>
+
+</body>
+</html>

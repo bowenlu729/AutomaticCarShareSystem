@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>agent module &#8212; Car Share System 0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-agent">
+<span id="agent-module"></span><h1>agent module<a class="headerlink" href="#module-agent" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="agent.encodeImage">
+<code class="sig-prename descclassname">agent.</code><code class="sig-name descname">encodeImage</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scanfile</span></em><span class="sig-paren">)</span><a class="headerlink" href="#agent.encodeImage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate encodings from a file.</p>
+<dl class="simple">
+<dt>scanfile<span class="classifier">str</span></dt><dd><p>Filename of image being encoded.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>list</dt><dd><p>A list of face encodings on success. Otherwise, None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="agent.execCommand">
+<code class="sig-prename descclassname">agent.</code><code class="sig-name descname">execCommand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s1</span></em>, <em class="sig-param"><span class="n">auth</span></em>, <em class="sig-param"><span class="n">gps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#agent.execCommand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send command to Master Pi and execute it.</p>
+<dl class="simple">
+<dt>s1<span class="classifier">str</span></dt><dd><p>“U” for unlock or “R” for return.</p>
+</dd>
+<dt>auth<span class="classifier">dict</span></dt><dd><p>Authentication data - username/password or encodings.</p>
+</dd>
+<dt>gps<span class="classifier">dict</span></dt><dd><p>Geographic location and coordinates.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">dict</span></dt><dd><p>A member dict.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="agent.getGPSLocation">
+<code class="sig-prename descclassname">agent.</code><code class="sig-name descname">getGPSLocation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agent.getGPSLocation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain geographic location and coordinates.</p>
+<p>None</p>
+<dl class="simple">
+<dt>dict</dt><dd><p>Geographic location and coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="agent.main">
+<code class="sig-prename descclassname">agent.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#agent.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start Agent Pi application</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="agent.selectAuthType">
+<code class="sig-prename descclassname">agent.</code><code class="sig-name descname">selectAuthType</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s1</span></em>, <em class="sig-param"><span class="n">gps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#agent.selectAuthType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select authentication type.</p>
+<dl class="simple">
+<dt>s1<span class="classifier">str</span></dt><dd><p>“U” for unlock or “R” for return.</p>
+</dd>
+<dt>gps<span class="classifier">dict</span></dt><dd><p>Geographic location and coordinates.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">dict</span></dt><dd><p>A member dict.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Car Share System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Jiecong Zhang, Tingyu Song, Sijie Shi, Jiahao Lu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/agent/agent.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

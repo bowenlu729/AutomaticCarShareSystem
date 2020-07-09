@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Car Share System - Register</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h1>[PIoT] Car Share System - Register</h1>
+  <div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand">Nice to meet you</span>
+      <a class="btn btn-link text-light" href="/welcome"><small>&gt;&gt; Login</small></a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" disabled>
+        <span class="navbar-toggler-icon"></span>
+	    </button>
+  	</nav>
+	  <div class="collapse bg-dark" id="navbarToggleExternalContent">
+  	  <ul class="nav">
+    	  <li class="nav-item">
+      	  <a class="btn bg-secondary text-white" href="/cars">Cars</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/gmaps">Maps</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/history">History</a>&nbsp;
+	      </li>
+	    </ul>
+  	</div>
+	</div>
+</div>
+
+<div class="container p-3 my-3">
+  {% if error is not none and error %}
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error!</strong> Registration details invalid!
+  </div>
+  {% elif error is not none and not error %}
+  <div class="alert alert-success">
+    <strong>Success!</strong> Member registered! Redirecting to <a href="{{ url_for('.welcome') }}">Login</a> in 3 seconds...
+  </div>
+  <meta http-equiv="refresh" content="3;url={{ url_for('.welcome') }}">
+  {% endif %}
+  <form class="needs-validation" action="/register" method="post">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username" name="username" required{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" name="password" required{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" required{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" required{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" required{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="userType">Type:</label>
+      <input type="text" class="form-control" id="userType" name="userType" required{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <button type="submit" class="btn btn-dark">Register</button>
+  </form>
+</div>
+
+</body>
+</html>

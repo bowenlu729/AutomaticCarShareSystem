@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>Admin Page</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href= "{{ url_for('static', filename='admin.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  </head>
+
+  <body>
+    <div id="page-wraper">
+      <!-- Sidebar Menu -->
+      <div class="responsive-nav">
+        <div id="menu" class="menu">
+          <div class="container">
+
+            <div class="author-content">
+              <h4>{{ staff["username"] }}</h4>
+              <span>Administer</span>
+            </div>
+            <nav class="main-nav" role="navigation">
+              <ul class="main-menu">
+                <li><a href="#section1" onclick="showSection('section1')">Home Page</a></li>
+                <li><a href="#section2" onclick="showSection('section2')">Car Rental History</a></li>
+                <li><a href="#section3" onclick="showSection('section3')">Search and View</a></li>
+                <li><a href="/modify" onclick="showSection('section4')">Add Users</a></li>
+                <li><a href="#section5" onclick="showSection('section5')">Report Cars</a></li>
+              </ul>
+            </nav>
+
+          </div>
+        </div>
+      </div>
+
+      <section class="section about-me" id="section1" style="display:block">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Hi, {{staff["username"]}}</h2>
+            <div class="line-dec"></div>
+            <span
+              >This is the admin menu which will allow admin to manipulate the data 
+              regarding to users and cars</span
+            >
+          </div>
+
+            <div class="row">
+                <div class="right-text">
+                  <h4>Your available permission</h4>
+                  <p></p>
+                  <p>
+                    View History: Be able to show a list of cars rental history.
+                  </p>
+                  <p>
+                    Search and View: Be able to search car or user by any of the properties and display fields neatly.
+                  </p>
+                  <p>
+                    Add, remove and update: Be able to edit information of cars or users.
+                  </p>
+                  <p>
+                    Report cars with issues: Be able to select and report cars with issue in the car view.
+                  </p>
+                  <div class="white-button">
+                    <a href="/logout">Logout</a>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+      </section>
+
+      <section class="section about-me" id="section2" style="display:none">
+        <div class="container">
+        
+          <div class="container p-3 my-3">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th>User No</th>
+                  <th>User Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>User Email</th>
+                  <th>User Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for member in members %}
+                <tr>
+                  <td>{{ member["id"] }}</td>
+                  <td>{{ member["username"] }}</td>
+                  <td>{{ member["firstName"] }}</td>
+                  <td>{{ member["lastName"] }}</td>
+                  <td>{{ member["email"] }}</td>
+                  <td>{{ member["userType"] }}</td>
+                  <td>
+                    <a type="button" class="btn btn-dark btn-sm" href="/history?id={{member['id']}}">History</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+           
+        </div>
+      </section>
+
+      <section class="section about-me" id="section3" style="display:none">
+        <div class="container">
+        
+        <div class="container p-3 my-3">
+          <form class="form-inline" action="/admin" method="post">
+            <label for="userName" class="mb-2 mr-sm-2">User Name:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="username" name="username" placeholder="Any" >
+            <label for="email" class="mb-2 mr-sm-2">User Email:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="email" name="email" placeholder="Any" >
+            <button type="submit" class="btn btn-dark mb-2">Search</button>
+          </form>
+          <table class="table">
+            <thead class="thead-light">
+              <tr>
+                  <th>User No</th>
+                  <th>User Name</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>User Email</th>
+                  <th>User Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>
+                  <td>{{ user["id"] }}</td>
+                  <td>{{ user["username"] }}</td>
+                  <td>{{ user["firstName"] }}</td>
+                  <td>{{ user["lastName"] }}</td>
+                  <td>{{ user["email"] }}</td>
+                  <td>{{ user["userType"] }}</td>
+                  <td>
+                  <a type="button" class="btn btn-dark btn-sm" href="/modify?id={{ user['id'] }}">Update</a>
+                  </td>
+                  <td>
+                  <a type="button" class="btn btn-dark btn-sm" href="/modify?id={{ user['id'] }}">Delete</a>
+                  </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+           
+        </div>
+      </section>
+
+      <section class="section about-me" id="section5" style="display:none">
+        <div class="container">
+          <div class="container p-3 my-3">
+            <table class="table">
+              <thead class="thead-light">
+                <tr>
+                  <th>Car No</th>
+                  <th>Make</th>
+                  <th>Body Type</th>
+                  <th>Colour</th>
+                  <th>Seats</th>
+                  <th>Location</th>
+                  <th>Cost/hr</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for car in cars %}
+                <tr>
+                  <td>{{ "C%04d" % car["id"] }}</td>
+                  <td>{{ car["make"] }}</td>
+                  <td>{{ car["bodyType"] }}</td>
+                  <td>{{ car["colour"] }}</td>
+                  <td>{{ car["seats"] }}</td>
+                  <td>{{ car["location"] }}</td>
+                  <td>{{ "$%.2f" | format(car["costPerHour"]) }}</td>
+                  {% if  car["available"] == 1%}
+                  <td>{{ "Not In Use" }}</td>
+                  {% else %}
+                  <td>{{ "Car In Use" }}</td>
+                  {% endif %}
+
+                  {% if  car["reported"] == 0%}
+                  <td>
+                    <a type="button" class="btn btn-dark btn-sm" href="/report?id={{ car['id'] }}">Report</a>
+                  </td>
+                  {% else %}
+                  <td>{{ "In Repair" }}</td>
+                  {% endif %}
+                  
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+
+    function showSection(id)
+    {
+        document.getElementById(id).style.display = "block";
+        hideSection(id)
+    }
+    
+    function hideSection(id)
+    {
+        var dic = ["section1", "section2", "section3","section5"];
+         for (var key in dic) {
+            if(dic[key] != id){
+              document.getElementById(dic[key]).style.display = "none";
+            }
+        }
+    }
+
+    </script>
+  </body>
+</html>

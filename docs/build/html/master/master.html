@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>master module &#8212; Car Share System 0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-master">
+<span id="master-module"></span><h1>master module<a class="headerlink" href="#module-master" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="master.alterReservation">
+<code class="sig-prename descclassname">master.</code><code class="sig-name descname">alterReservation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reservationId</span></em>, <em class="sig-param"><span class="n">status</span></em>, <em class="sig-param"><span class="n">gps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#master.alterReservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alter details of reservation.</p>
+<dl class="simple">
+<dt>reservationId<span class="classifier">int</span></dt><dd><p>Reservation id.</p>
+</dd>
+<dt>status<span class="classifier">int</span></dt><dd><p>Reservation status.</p>
+</dd>
+<dt>gps<span class="classifier">dict</span></dt><dd><p>Geographic location and coordinates.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>bool</dt><dd><p>True if success. Otherwise, False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="master.findReservation">
+<code class="sig-prename descclassname">master.</code><code class="sig-name descname">findReservation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">memberId</span></em>, <em class="sig-param"><span class="n">carId</span></em>, <em class="sig-param"><span class="n">status</span></em><span class="sig-paren">)</span><a class="headerlink" href="#master.findReservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find reservation matching member id, car id and status.</p>
+<dl class="simple">
+<dt>memberId<span class="classifier">int</span></dt><dd><p>Member id.</p>
+</dd>
+<dt>carId<span class="classifier">int</span></dt><dd><p>Car id.</p>
+</dd>
+<dt>status<span class="classifier">int</span></dt><dd><p>Reservation status.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict</dt><dd><p>Reservation dict if session is valid. Otherwise, None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="master.main">
+<code class="sig-prename descclassname">master.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#master.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start Master Pi master service</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="master.updateReservation">
+<code class="sig-prename descclassname">master.</code><code class="sig-name descname">updateReservation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#master.updateReservation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update reservation based on data sent from Agent Pi.</p>
+<dl class="simple">
+<dt>data<span class="classifier">dict {</span></dt><dd><dl class="simple">
+<dt>carId<span class="classifier">int</span></dt><dd><p>Car id.</p>
+</dd>
+<dt>status<span class="classifier">dict</span></dt><dd><p>Status changes.</p>
+</dd>
+<dt>auth<span class="classifier">dict</span></dt><dd><p>Authentication data - username/password or encodings.</p>
+</dd>
+<dt>gps<span class="classifier">dict</span></dt><dd><p>Geographic location and coordinates.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>}</p>
+<dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">dict</span></dt><dd><p>A member dict.</p>
+</dd>
+<dt>error<span class="classifier">str</span></dt><dd><p>Error message if there’s any.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="simple">
+<dt>}</dt><dd><p>Predefined API return data structure.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="master.verifyEncodings">
+<code class="sig-prename descclassname">master.</code><code class="sig-name descname">verifyEncodings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">encodings</span></em><span class="sig-paren">)</span><a class="headerlink" href="#master.verifyEncodings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify facial recognition encodings.</p>
+<dl class="simple">
+<dt>encodings<span class="classifier">list</span></dt><dd><p>A list of encodings extracted from an image.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dict</dt><dd><p>Member dict if session is valid. Otherwise, None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Car Share System</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Jiecong Zhang, Tingyu Song, Sijie Shi, Jiahao Lu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/master/master.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

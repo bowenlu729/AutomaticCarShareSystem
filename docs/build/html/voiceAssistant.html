@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>voiceAssistant &#8212; PIOT - Assignment 3 Version 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="QRcode" href="QRcode.html" />
+    <link rel="prev" title="Welcome to PIOT - Assignment 3’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="voiceassistant">
+<h1>voiceAssistant<a class="headerlink" href="#voiceassistant" title="Permalink to this headline">¶</a></h1>
+<p>Voice search methods that add the voice/search feature to search the cars in MP.
+This is for the admin who is looking to find a specific car.</p>
+<div class="section" id="required-components">
+<h2>Required components<a class="headerlink" href="#required-components" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>google assistant: Convert speech into text(import speech_recognition as sr)</p></li>
+<li><p>client_secret.json: save the certification for API</p></li>
+</ul>
+</div>
+<div class="section" id="getcarmaketosearch">
+<h2>getCarMakeToSearch():<a class="headerlink" href="#getcarmaketosearch" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Voice search by saying car make</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Say</span> <span class="n">the</span> <span class="n">car</span> <span class="n">make</span> <span class="n">to</span> <span class="n">search</span> <span class="k">for</span><span class="o">.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Looking</span> <span class="k">for</span> <span class="n">car</span> <span class="k">with</span> <span class="n">make</span> <span class="s1">&#39;make&#39;</span><span class="o">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Results</span> <span class="n">found</span> <span class="o">/</span> <span class="n">No</span> <span class="n">results</span> <span class="n">found</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>To test searching without the microphone uncomment this line of code</p></li>
+<li><p>for i, microphone_name in enumerate(sr.Microphone.list_microphone_names()):</p></li>
+<li><p>Set the device ID of the mic that we specifically want to use to avoid ambiguity</p></li>
+<li><p>r = sr.Recognizer(): obtain audio from the microphone</p></li>
+<li><p>subprocess.run(“clear”): clear console of errors</p></li>
+<li><p>r.adjust_for_ambient_noise(source): energy threshold based on the surrounding noise level</p></li>
+<li><p>audio = r.listen(source, timeout = 1.5): listen voice</p></li>
+<li><p>carMake = r.recognize_google(audio): Replace recognition text</p></li>
+</ul>
+</div>
+<div class="section" id="searchcarmake-carmake">
+<h2>searchcarMake(carMake):<a class="headerlink" href="#searchcarmake-carmake" title="Permalink to this headline">¶</a></h2>
+<p>Connect to Mysql DB to find car</p>
+<blockquote>
+<div><dl class="simple">
+<dt>carMake<span class="classifier">str</span></dt><dd><p>Make of the car</p>
+</dd>
+</dl>
+<blockquote>
+<div><dl class="simple">
+<dt>dict {</dt><dd><dl class="simple">
+<dt>body<span class="classifier">dict</span></dt><dd><p>A car dict.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>connection = pymysql.connect(HOST, USER, PASSWORD, DATABASE): Connect to database</p></li>
+<li><p>with connection.cursor() as cursor:</p></li>
+<li><p>cursor.execute(“select * from Cars where make = %s”, (carMake,)):Execute query statement</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">PIOT - Assignment 3</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Additional Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">voiceAssistant</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#required-components">Required components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getcarmaketosearch">getCarMakeToSearch():</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#searchcarmake-carmake">searchcarMake(carMake):</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="QRcode.html">QRcode</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to PIOT - Assignment 3’s documentation!</a></li>
+      <li>Next: <a href="QRcode.html" title="next chapter">QRcode</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Bowen Lu, Tingyu Song, Qiaochu Wang.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/voiceAssistant.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

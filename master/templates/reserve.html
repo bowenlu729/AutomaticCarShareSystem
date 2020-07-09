@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Car Share System - Reserve</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  <h1>[PIoT] Car Share System - Reserve</h1>
+  <div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+			<span class="navbar-brand">Hi, {{ member["firstName"] }} {{member["lastName"]}}</span>
+			<a class="btn btn-link text-light" href="/logout"><small>&gt;&gt; Logout</small></a>
+      <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+        <span class="navbar-toggler-icon"></span>
+	    </button>
+  	</nav>
+	  <div class="collapse bg-dark" id="navbarToggleExternalContent">
+  	  <ul class="nav">
+    	  <li class="nav-item">
+      	  <a class="btn bg-secondary text-white" href="/cars">Cars</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/gmaps">Maps</a>&nbsp;
+	      </li>
+  	    <li class="nav-item">
+    	    <a class="btn bg-secondary text-white" href="/history">History</a>&nbsp;
+	      </li>
+	    </ul>
+  	</div>
+	</div>
+</div>
+
+<div class="container p-3 my-3">
+  {% if error is not none and error and car is none %}
+  <div class="alert alert-danger">
+    <strong>Error!</strong> Car not available now! Redirecting to <a href="{{ url_for('.cars') }}">Cars</a> in 3 seconds...
+    <meta http-equiv="refresh" content="3;url={{ url_for('.cars') }}">
+  </div>
+  {% elif error is not none and error %}
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error!</strong> Reservation details invalid!
+  </div>
+  {% elif error is not none and not error %}
+  <div class="alert alert-success">
+    <strong>Success!</strong> Car reserved! Redirecting to <a href="{{ url_for('.history') }}">History</a> in 3 seconds...
+  </div>
+  <meta http-equiv="refresh" content="3;url={{ url_for('.history') }}">
+  {% endif %}
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Car No</th>
+        <th>Make</th>
+        <th>Body Type</th>
+        <th>Colour</th>
+        <th>Seats</th>
+        <th>Location</th>
+        <th>Cost/hr</th>
+      </tr>
+        <td>{{ "C%04d" % car["id"] }}</td>
+        <td>{{ car["make"] }}</td>
+        <td>{{ car["bodyType"] }}</td>
+        <td>{{ car["colour"] }}</td>
+        <td>{{ car["seats"] }}</td>
+        <td>{{ car["location"] }}</td>
+        <td>{{ "$%.2f" | format(car["costPerHour"]) }}</td>
+      <tr>
+      </tr>
+      <tr>
+				<td colspan="7">
+	        <form class="form-inline needs-validation" action="/reserve" method="post">
+            <input type="hidden" name="carId" value="{{ car['id'] }}">
+  	        <label for="reservedTime" class="mb-2 mr-sm-2">Reserved Time:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="reservedTime" name="reservedTime" placeholder="YYYY-MM-DD hh:mm"value="" required{% if error is not none and not error %} disabled{% endif %}>
+      	    <label for="reservedHours" class="mb-2 mr-sm-2">Reserved Hours:</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="reservedHours" name="reservedHours" value="" required{% if error is not none and not error %} disabled{% endif %}>
+          	<button type="submit" class="btn btn-dark mb-2">Order</button>
+       	 </form>
+				</td>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+</body>
+</html>

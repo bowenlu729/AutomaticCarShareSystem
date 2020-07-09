@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>[PIoT] Car Share System - Register</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container p-3 my-3 bg-dark text-white">
+  {%if user is none%}
+  <h1>[PIoT] Admin System - New Member</h1>
+  {%else%}
+  <h1>[PIoT] Admin System - Modify Member</h1>
+  {%endif%}
+</div>
+
+<div class="container p-3 my-3">
+{%if user is none%}
+  {% if error is not none and error %}
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error!</strong> Registration details invalid!
+  </div>
+  {% elif error is not none and not error %}
+  <div class="alert alert-success">
+    <strong>Success!</strong> New Member Added! Redirecting to <a href="{{ url_for('.admin') }}">Admin page</a> in 3 seconds...
+  </div>
+  <meta http-equiv="refresh" content="3;url={{ url_for('.admin') }}">
+  {% endif %}
+
+{%else%}
+  {% if error is not none and error %}
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Error!</strong> Submission details invalid!
+  </div>
+  {% elif error is not none and not error %}
+  <div class="alert alert-success">
+    <strong>Success!</strong> User Information Updated! Redirecting to <a href="{{ url_for('.admin') }}">Admin page</a> in 3 seconds...
+  </div>
+  <meta http-equiv="refresh" content="3;url={{ url_for('.admin') }}">
+  {% endif %}
+{% endif %}
+
+  <form class="needs-validation" action="/modify" method="post">
+
+    {%if user is not none%}
+      <h1 for="userId">Modifying User '{{user['username']}}' with ID '{{user['id']}}'</h1>
+    {% endif %}
+
+    {%if user is not none%}
+    <div class="form-group">
+      <input type="hidden"  name="id" value="{{user['id']}}">
+    </div>
+    {%else%}
+    <div class="form-group">
+      <input type="hidden"  name="id" value=0>
+    </div>
+    {% endif %}
+
+    <div class="form-group">
+      <label for="username">Username:</label> 
+      <input type="text" class="form-control" id="username" name="username" {%if user is none%}required{% endif %} {% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" name="password" {%if user is none%}required{% endif %}{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" {%if user is none%}required{% endif %}{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" {%if user is none%}required{% endif %}{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" {%if user is none%}required{% endif %}{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    <div class="form-group">
+      <label for="userType">Type:</label>
+      <input type="text" class="form-control" id="userType" name="userType" {%if user is none%}required{% endif %}{% if error is not none and not error %} disabled{% endif %}>
+    </div>
+    {%if user is not none%}
+    <button type="submit" class="btn btn-dark">Submit</button>
+    {%else%}
+    <button type="submit" class="btn btn-dark">Register</button>
+    {%endif%}
+  </form>  
+    <p></p>
+    <button onclick="javascrtpt:window.location.href='/admin'" class="btn btn-dark">Back</button>
+</div>
+
+</body>
+</html>
