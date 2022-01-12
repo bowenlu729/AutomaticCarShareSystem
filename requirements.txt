@@ -57,7 +57,7 @@ packaging==20.4
 pathtools==0.1.2
 phonenumbers==8.12.4
 Pillow==7.1.2
-pipenv==2020.6.2
+pipenv==2022.1.8
 port-for==0.3.1
 protobuf==3.12.2
 pyasn1==0.4.8
