@@ -1,3 +1,23 @@
+Your team has been contacted by a car share company to develop an automatic Car Share System. This system is used to book, find and unlock and lock a car. In addition, the customer can report some issues with the car to help the company to maintain the cars. You will create an application for four types of users: customer, company manager, engineers and system administrator.
+
+In summary, the implementation of this assignment involves the following components:
+
+• Python documentation tools such as Sphinx
+
+• Practice third party API
+
+• Unit testing in Python
+
+• Socket Programming
+
+• Writing your own API using web framework Django
+
+• AI features such as facial recognition
+
+• Programming with Cloud databases
+
+• Selected Software Engineering Project Management/Tools
+
 # PIOT-3
  Raspberry Pi application written in Python
  
